@@ -1,13 +1,13 @@
 import ExpenseDate from './ExpenseDate';
 import './ExpenseItem.css';
 
-function ExpenseItem({ data }) {
+function ExpenseItem({ expense }) {
 	return (
 		<div className="expense-item">
-			<ExpenseDate date={data.date} />
+			<ExpenseDate date={expense.date} />
 			<div className="expense-item__description">
-				<h2>{data.title}</h2>
-				<div className="expense-item__price"> $ {data.amount}</div>
+				<h2>{expense.title}</h2>
+				<div className="expense-item__price"> $ {expense.amount}</div>
 			</div>
 		</div>
 	);
