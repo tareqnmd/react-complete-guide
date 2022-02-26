@@ -26,7 +26,7 @@ const Expenses = ({ expenses }) => {
 	return (
 		<Card className="expenses">
 			<ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
-			{/* {filteredExpenses.length === 0 && 'No expenses found'}
+			{/* {filteredExpenses.length === 0 && <p>No expenses found</p>}
 			{filteredExpenses.length > 0 && (
 				<>
 					{filteredExpenses.map((expense) => (
@@ -41,7 +41,7 @@ const Expenses = ({ expenses }) => {
 					))}
 				</>
 			) : (
-				'No expenses found'
+				<p>No expenses found</p>
 			)} */}
 			{expensesContent}
 		</Card>
