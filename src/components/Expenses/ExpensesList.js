@@ -1,17 +1,22 @@
 import ExpenseItem from './ExpenseItem';
-import './ExpensesFilter.css';
+import './ExpensesList.css';
 
 const ExpensesList = ({ filteredExpenses }) => {
-	let expensesContent = <p>No Expense Found</p>;
+	// let expensesContent = <h2>No Expenses Found</h2>;
 
-	if (filteredExpenses.length > 0) {
-		expensesContent = filteredExpenses.map((expense) => (
-			<ExpenseItem key={expense.id} expense={expense} />
-		));
+	// if (filteredExpenses.length > 0) {
+	// 	expensesContent = filteredExpenses.map((expense) => (
+	// 		<ExpenseItem key={expense.id} expense={expense} />
+	// 	));
+	// }
+
+	if (filteredExpenses.length === 0) {
+		return <h2 className="expenses-list__fallback">No expenses found</h2>;
 	}
+
 	return (
 		<>
-			{/* {filteredExpenses.length === 0 && <p>No expenses found</p>}
+			{/* {filteredExpenses.length === 0 && <h2>No Expenses Found</h2>}
 			{filteredExpenses.length > 0 && (
 				<>
 					{filteredExpenses.map((expense) => (
@@ -19,6 +24,7 @@ const ExpensesList = ({ filteredExpenses }) => {
 					))}
 				</>
 			)} */}
+
 			{/* {filteredExpenses.length > 0 ? (
 				<>
 					{filteredExpenses.map((expense) => (
@@ -26,9 +32,16 @@ const ExpensesList = ({ filteredExpenses }) => {
 					))}
 				</>
 			) : (
-				<p>No expenses found</p>
+				<h2>No Expenses Found</h2>
 			)} */}
-			{expensesContent}
+
+			{/* {expensesContent} */}
+
+			<div className="expenses-list">
+				{filteredExpenses.map((expense) => (
+					<ExpenseItem key={expense.id} expense={expense} />
+				))}
+			</div>
 		</>
 	);
 };
