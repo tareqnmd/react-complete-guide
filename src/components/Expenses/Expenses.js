@@ -5,15 +5,18 @@ import './Expenses.css';
 import ExpensesFilter from './ExpensesFilter';
 
 const Expenses = ({ expenses }) => {
-	const [filteredYear, setFilteredYear] = useState('2020');
+	const [filteredYear, setFilteredYear] = useState('all');
 
 	const filterChangeHandler = (selectedYear) => {
 		setFilteredYear(selectedYear);
 	};
 
-	const filteredExpenses = expenses.filter((expense) => {
-		return expense.date.getFullYear().toString() === filteredYear;
-	});
+	const filteredExpenses =
+		filteredYear === 'all'
+			? expenses
+			: expenses.filter((expense) => {
+					return expense.date.getFullYear().toString() === filteredYear;
+			  });
 
 	let expensesContent = <p>No Expense Found</p>;
 
