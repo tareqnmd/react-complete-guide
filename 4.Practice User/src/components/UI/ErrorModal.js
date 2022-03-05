@@ -8,10 +8,10 @@ const ErrorModal = ({ title, message, visibility, onConfirm }) => {
 			<div className={`${styles.backdrop} ${styles[visibility]}`} onClick={onConfirm}>
 				<Card className={styles.modal}>
 					<header className={styles.header}>
-						<h2>{title || 'Title'}</h2>
+						<h2>{title}</h2>
 					</header>
 					<div className={styles.content}>
-						<p>{message || ''}</p>
+						<p>{message}</p>
 					</div>
 					<footer className={styles.actions}>
 						<Button onClick={onConfirm}>Ok</Button>
