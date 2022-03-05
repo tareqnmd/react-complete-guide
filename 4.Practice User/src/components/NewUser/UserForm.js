@@ -9,7 +9,6 @@ const UserForm = ({ onSaveUserData }) => {
 	const [error, setError] = useState({
 		title: '',
 		message: '',
-		visibility: false,
 	});
 
 	const nameChangeHandler = (event) => {

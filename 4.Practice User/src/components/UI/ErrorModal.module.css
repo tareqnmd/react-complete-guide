@@ -6,6 +6,7 @@
 	height: 100vh;
 	z-index: 10;
 	background: rgba(0, 0, 0, 0.75);
+	visibility: hidden;
 }
 
 .modal {
@@ -43,4 +44,52 @@
 		left: calc(50% - 20rem);
 		width: 40rem;
 	}
+}
+
+@keyframes zoomIn {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes zoomOut {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(0);
+	}
+}
+
+@keyframes opIn {
+	0% {
+		opacity: 0;
+		visibility: hidden;
+	}
+	100% {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+@keyframes opOut {
+	0% {
+		opacity: 1;
+		visibility: visible;
+	}
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+.backdrop.false {
+	animation: opOut 0.5s forwards;
+}
+
+.backdrop.true {
+	animation: opIn 0.5s forwards;
 }
