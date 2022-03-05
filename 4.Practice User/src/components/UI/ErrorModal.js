@@ -19,8 +19,9 @@ const ErrorModal = ({ title, message, visibility, onConfirm }) => {
 	}, [visibility]);
 
 	return (
-		<div className={`${styles.backdrop} ${styles[isVisible]}`} onClick={closeModal}>
-			<Card className={styles.modal}>
+		<>
+			<div className={`${styles.backdrop} ${styles[isVisible]}`} onClick={closeModal} />
+			<Card className={`${styles.modal} ${styles[isVisible]}`}>
 				<header className={styles.header}>
 					<h2>{title}</h2>
 				</header>
@@ -31,7 +32,7 @@ const ErrorModal = ({ title, message, visibility, onConfirm }) => {
 					<Button onClick={closeModal}>Ok</Button>
 				</footer>
 			</Card>
-		</div>
+		</>
 	);
 };
 

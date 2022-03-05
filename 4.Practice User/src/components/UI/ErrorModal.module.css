@@ -17,6 +17,7 @@
 	z-index: 100;
 	overflow: hidden;
 	border: 1px solid rgba(0, 0, 0, 0.75);
+	visibility: hidden;
 }
 
 .header {
@@ -86,10 +87,12 @@
 	}
 }
 
-.backdrop.false {
+.backdrop.false,
+.modal.false {
 	animation: opOut 0.3s forwards;
 }
 
-.backdrop.true {
+.backdrop.true,
+.modal.true {
 	animation: opIn 0.3s forwards;
 }
