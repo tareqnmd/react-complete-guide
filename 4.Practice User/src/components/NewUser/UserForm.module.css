@@ -1,0 +1,30 @@
+.add-user {
+	border: 1px solid red;
+}
+
+.add-user label {
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	display: block;
+}
+
+.add-user input {
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	margin-bottom: 10px;
+	height: 30px;
+	display: block;
+	width: 100%;
+}
+
+.add-user button {
+	border: 0;
+	font-weight: bold;
+	font-size: 16px;
+	color: #fff;
+	border-radius: 3px;
+	background: rgb(66, 196, 135);
+	padding: 10px 20px;
+	cursor: pointer;
+	margin-top: 10px;
+}

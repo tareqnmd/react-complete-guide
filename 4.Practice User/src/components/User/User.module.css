@@ -1,0 +1,8 @@
+.user {
+	border: 2px solid #cecece;
+	padding: 0.7rem;
+	margin-bottom: 0.7rem;
+}
+.user:last-child {
+	margin-bottom: 0;
+}
