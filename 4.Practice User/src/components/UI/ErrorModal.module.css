@@ -87,9 +87,9 @@
 }
 
 .backdrop.false {
-	animation: opOut 0.5s forwards;
+	animation: opOut 0.3s forwards;
 }
 
 .backdrop.true {
-	animation: opIn 0.5s forwards;
+	animation: opIn 0.3s forwards;
 }
