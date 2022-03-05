@@ -17,23 +17,21 @@ const ErrorModal = ({ title, message, visibility, onConfirm }) => {
 	useEffect(() => {
 		setIsVisible(visibility);
 	}, [visibility]);
-	
+
 	return (
-		<>
-			<div className={`${styles.backdrop} ${styles[isVisible]}`} onClick={closeModal}>
-				<Card className={styles.modal}>
-					<header className={styles.header}>
-						<h2>{title}</h2>
-					</header>
-					<div className={styles.content}>
-						<p>{message}</p>
-					</div>
-					<footer className={styles.actions}>
-						<Button onClick={closeModal}>Ok</Button>
-					</footer>
-				</Card>
-			</div>
-		</>
+		<div className={`${styles.backdrop} ${styles[isVisible]}`} onClick={closeModal}>
+			<Card className={styles.modal}>
+				<header className={styles.header}>
+					<h2>{title}</h2>
+				</header>
+				<div className={styles.content}>
+					<p>{message}</p>
+				</div>
+				<footer className={styles.actions}>
+					<Button onClick={closeModal}>Ok</Button>
+				</footer>
+			</Card>
+		</div>
 	);
 };
 
