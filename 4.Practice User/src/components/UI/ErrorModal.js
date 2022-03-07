@@ -11,7 +11,6 @@ const ErrorModal = ({ title, message, visibility, onConfirm }) => {
 		setTimeout(() => {
 			onConfirm();
 		}, 300);
-		clearTimeout();
 	};
 
 	useEffect(() => {
