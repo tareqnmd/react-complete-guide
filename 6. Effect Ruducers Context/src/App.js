@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import AuthContext from './auth-context';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import MainHeader from './components/MainHeader/MainHeader';
@@ -14,7 +15,7 @@ function App() {
 	};
 
 	const logoutHandler = () => {
-    localStorage.removeItem('isLoggedIn');
+		localStorage.removeItem('isLoggedIn');
 		setIsLoggedIn(false);
 	};
 
@@ -26,13 +27,13 @@ function App() {
 	}, []);
 
 	return (
-		<>
-			<MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
+		<AuthContext.Provider value={{ isLoggedIn: isLoggedIn }}>
+			<MainHeader onLogout={logoutHandler} />
 			<main>
 				{!isLoggedIn && <Login onLogin={loginHandler} />}
 				{isLoggedIn && <Home onLogout={logoutHandler} />}
 			</main>
-		</>
+		</AuthContext.Provider>
 	);
 }
 
