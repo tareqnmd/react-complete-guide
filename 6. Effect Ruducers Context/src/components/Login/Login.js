@@ -1,4 +1,5 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
+import AuthContext from '../../auth-context';
 import Button from '../UI/Button/Button';
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -39,11 +40,12 @@ const passwordReducer = (state, action) => {
 	};
 };
 
-const Login = (props) => {
+const Login = () => {
 	// const [enteredEmail, setEnteredEmail] = useState('');
 	// const [emailIsValid, setEmailIsValid] = useState();
 	// const [enteredPassword, setEnteredPassword] = useState('');
 	// const [passwordIsValid, setPasswordIsValid] = useState();
+	const ctx = useContext(AuthContext);
 	const [formIsValid, setFormIsValid] = useState(false);
 
 	const [emailState, dispatchEmail] = useReducer(emailReducer, { value: '', isValid: null });
@@ -80,7 +82,7 @@ const Login = (props) => {
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		props.onLogin(emailState.value, passwordState.value);
+		ctx.onLogin(emailState.value, passwordState.value);
 	};
 
 	// useEffect(() => {
@@ -116,7 +118,9 @@ const Login = (props) => {
 		<Card className={classes.login}>
 			<form onSubmit={submitHandler}>
 				<div
-					className={`${classes.control} ${emailState.isValid === false ? classes.invalid : ''}`}
+					className={`${classes.control} ${
+						emailState.isValid === false ? classes.invalid : ''
+					}`}
 				>
 					<label htmlFor="email">E-Mail</label>
 					<input
@@ -128,7 +132,9 @@ const Login = (props) => {
 					/>
 				</div>
 				<div
-					className={`${classes.control} ${passwordState.isValid === false ? classes.invalid : ''}`}
+					className={`${classes.control} ${
+						passwordState.isValid === false ? classes.invalid : ''
+					}`}
 				>
 					<label htmlFor="password">Password</label>
 					<input
