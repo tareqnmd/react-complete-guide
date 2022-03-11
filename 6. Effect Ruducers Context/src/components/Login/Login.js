@@ -45,7 +45,7 @@ const Login = () => {
 	// const [emailIsValid, setEmailIsValid] = useState();
 	// const [enteredPassword, setEnteredPassword] = useState('');
 	// const [passwordIsValid, setPasswordIsValid] = useState();
-	const ctx = useContext(AuthContext);
+	const authCtx = useContext(AuthContext);
 	const [formIsValid, setFormIsValid] = useState(false);
 
 	const [emailState, dispatchEmail] = useReducer(emailReducer, { value: '', isValid: null });
@@ -82,7 +82,7 @@ const Login = () => {
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		ctx.onLogin(emailState.value, passwordState.value);
+		authCtx.onLogin(emailState.value, passwordState.value);
 	};
 
 	// useEffect(() => {

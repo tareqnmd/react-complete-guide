@@ -27,14 +27,14 @@ function App() {
 	// 	}
 	// }, []);
 
-	const ctx = useContext(AuthContext);
+	const authCtx = useContext(AuthContext);
 
 	return (
 		<>
 			<MainHeader />
 			<main>
-				{!ctx.isLoggedIn && <Login />}
-				{ctx.isLoggedIn && <Home />}
+				{!authCtx.isLoggedIn && <Login />}
+				{authCtx.isLoggedIn && <Home />}
 			</main>
 		</>
 	);
