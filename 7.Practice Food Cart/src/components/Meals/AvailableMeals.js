@@ -40,7 +40,7 @@ const AvailableMeals = () => {
 			<Card>
 				<ul>
 					{meals.map((meal) => (
-						<MealItem meal={meal} />
+						<MealItem key={meal.id} meal={meal} />
 					))}
 				</ul>
 			</Card>
