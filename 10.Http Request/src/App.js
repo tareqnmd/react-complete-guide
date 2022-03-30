@@ -1,28 +1,59 @@
+import { useState } from 'react';
 import './App.css';
 import MoviesList from './components/MoviesList';
 
 const App = () => {
-	const dummyMovies = [
-		{
-			id: 1,
-			title: 'Some Dummy Movie',
-			openingText: 'This is the opening text of the movie',
-			releaseDate: '2021-05-18',
-		},
-		{
-			id: 2,
-			title: 'Some Dummy Movie 2',
-			openingText: 'This is the second opening text of the movie',
-			releaseDate: '2021-05-19',
-		},
-	];
+	const [movies, setMovies] = useState([]);
+
+	// function fetchMovies() {
+	// 	fetch('https://swapi.dev/api/films')
+	// 		.then((response) => {
+	// 			return response.json();
+	// 		})
+	// 		.then((data) => {
+	// 			const transformedMovies = data.results.map((movie) => {
+	// 				return {
+	// 					id: movie.episode_id,
+	// 					title: movie.title,
+	// 					openingText: movie.opening_crawl,
+	// 					releaseDate: movie.release_date,
+	// 				};
+	// 			});
+	// 			setMovies(transformedMovies);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log(error);
+	//          setMovies([]);
+	// 		});
+	// }
+
+	async function fetchMovies() {
+		const response = await fetch('https://swapi.dev/api/films');
+		try {
+			const data = await response.json();
+
+			const transformedMovies = data.results.map((movie) => {
+				return {
+					id: movie.episode_id,
+					title: movie.title,
+					openingText: movie.opening_crawl,
+					releaseDate: movie.release_date,
+				};
+			});
+			setMovies(transformedMovies);
+		} catch (error) {
+			console.log(error);
+			setMovies([]);
+		}
+	}
+
 	return (
 		<>
 			<section>
-				<button>Fetch Movies</button>
+				<button onClick={fetchMovies}>Fetch Movies</button>
 			</section>
 			<section>
-				<MoviesList movies={dummyMovies} />
+				<MoviesList movies={movies} />
 			</section>
 		</>
 	);
