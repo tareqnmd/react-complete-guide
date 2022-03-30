@@ -52,13 +52,23 @@ const App = () => {
 		setLoading(false);
 	}
 
+	let content = 'No movies found';
+
+	if (loading) {
+		content = <div>Loading...</div>;
+	} else if (error) {
+		content = <div>{error}</div>;
+	} else if (movies.length > 0) {
+		content = <MoviesList movies={movies} />;
+	}
+
 	return (
 		<>
 			<section>
 				<button onClick={fetchMovies}>Fetch Movies</button>
 			</section>
 			<section>
-				{loading ? (
+				{/* {loading ? (
 					'Loading ...'
 				) : error ? (
 					`${error}`
@@ -66,7 +76,8 @@ const App = () => {
 					<MoviesList movies={movies} />
 				) : (
 					'No movies found'
-				)}
+				)} */}
+				{content}
 			</section>
 		</>
 	);
