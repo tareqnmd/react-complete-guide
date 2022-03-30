@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import MoviesList from './components/MoviesList';
 
@@ -31,7 +31,7 @@ const App = () => {
 	// 	setLoading(false);
 	// }
 
-	async function fetchMovies() {
+	const fetchMovies = useCallback(async () => {
 		setLoading(true);
 		const response = await fetch('https://swapi.dev/api/films');
 		try {
@@ -50,7 +50,7 @@ const App = () => {
 			setMovies([]);
 		}
 		setLoading(false);
-	}
+	}, []);
 
 	let content = 'No movies found';
 
@@ -61,6 +61,10 @@ const App = () => {
 	} else if (movies.length > 0) {
 		content = <MoviesList movies={movies} />;
 	}
+
+	useEffect(() => {
+		fetchMovies();
+	}, [fetchMovies]);
 
 	return (
 		<>
