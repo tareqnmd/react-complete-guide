@@ -4,6 +4,7 @@ import MoviesList from './components/MoviesList';
 
 const App = () => {
 	const [movies, setMovies] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	// function fetchMovies() {
 	// 	fetch('https://swapi.dev/api/films')
@@ -28,6 +29,7 @@ const App = () => {
 	// }
 
 	async function fetchMovies() {
+		setLoading(true);
 		const response = await fetch('https://swapi.dev/api/films');
 		try {
 			const data = await response.json();
@@ -41,9 +43,11 @@ const App = () => {
 				};
 			});
 			setMovies(transformedMovies);
+			setLoading(false);
 		} catch (error) {
 			console.log(error);
 			setMovies([]);
+			setLoading(false);
 		}
 	}
 
@@ -53,7 +57,13 @@ const App = () => {
 				<button onClick={fetchMovies}>Fetch Movies</button>
 			</section>
 			<section>
-				<MoviesList movies={movies} />
+				{loading ? (
+					'Loading ...'
+				) : movies.length > 0 ? (
+					<MoviesList movies={movies} />
+				) : (
+					'No movies found'
+				)}
 			</section>
 		</>
 	);
