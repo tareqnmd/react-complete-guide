@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import './App.css';
+import AddMovie from './components/AddMovie';
 import MoviesList from './components/MoviesList';
 
 const App = () => {
@@ -33,7 +34,9 @@ const App = () => {
 
 	const fetchMovies = useCallback(async () => {
 		setLoading(true);
-		const response = await fetch('https://swapi.dev/api/films');
+		const response = await fetch(
+			'https://react-http-tareq-default-rtdb.firebaseio.com/movies.json'
+		);
 		try {
 			const data = await response.json();
 			const transformedMovies = data.results.map((movie) => {
@@ -62,12 +65,34 @@ const App = () => {
 		content = <MoviesList movies={movies} />;
 	}
 
+	const addMovieHandler = async (movie) => {
+		try {
+			const response = await fetch(
+				'https://react-http-tareq-default-rtdb.firebaseio.com/movies.json',
+				{
+					method: 'POST',
+					body: JSON.stringify(movie),
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
+			);
+			const data = await response.json();
+			console.log(data);
+		} catch (error) {
+			setError('Movie could not be added');
+		}
+	};
+
 	useEffect(() => {
 		fetchMovies();
 	}, [fetchMovies]);
 
 	return (
 		<>
+			<section>
+				<AddMovie onAddMovie={addMovieHandler} />
+			</section>
 			<section>
 				<button onClick={fetchMovies}>Fetch Movies</button>
 			</section>
