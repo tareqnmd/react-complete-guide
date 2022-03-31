@@ -9,7 +9,7 @@ const useCounter = (initial, value) => {
 		}, 1000);
 
 		return () => clearInterval(interval);
-	}, []);
+	}, [initial, value]);
 
 	return counter;
 };
