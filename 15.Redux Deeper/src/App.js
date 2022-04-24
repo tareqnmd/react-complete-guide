@@ -5,6 +5,7 @@ import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
 import Notification from './components/UI/Notification';
 import { uiActions } from './store/reducers/ui-slice';
+let isInitial = true;
 
 function App() {
 	const dispatch = useDispatch();
@@ -49,6 +50,10 @@ function App() {
 				);
 			}
 		};
+		if (isInitial) {
+			isInitial = false;
+			return;
+		}
 		sendCartData();
 	}, [cart, dispatch]);
 
