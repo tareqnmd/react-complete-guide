@@ -21,28 +21,35 @@ function App() {
 					message: 'Sending cart data',
 				})
 			);
-			const response = fetch('https://redux-cart-6dcd9-default-rtdb.firebaseio.com/cart.json', {
-				method: 'PUT',
-				body: JSON.stringify(cart),
-			});
-			if (!response.ok) {
-				throw new Error('Sending cart data failed!');
+			try {
+				const response = await fetch(
+					'https://redux-cart-6dcd9-default-rtdb.firebaseio.com/cart.json',
+					{
+						method: 'PUT',
+						body: JSON.stringify(cart),
+					}
+				);
+				if (!response.ok) {
+					throw new Error('Sending cart data failed!');
+				}
+				dispatch(
+					uiActions.showNotification({
+						status: 'success',
+						title: 'Success!',
+						message: 'Sent cart data Successfully',
+					})
+				);
+			} catch (error) {
+				dispatch(
+					uiActions.showNotification({
+						status: 'error',
+						title: 'Error!',
+						message: 'Sent cart data Failed',
+					})
+				);
 			}
-			dispatch(
-				uiActions.showNotification({
-					status: 'success',
-					title: 'Success!',
-					message: 'Sent cart data Successfully',
-				})
-			);
 		};
-		sendCartData().catch((error) => {
-			uiActions.showNotification({
-				status: 'error',
-				title: 'Error!',
-				message: 'Sent cart data Failed',
-			});
-		});
+		sendCartData();
 	}, [cart, dispatch]);
 
 	return (
