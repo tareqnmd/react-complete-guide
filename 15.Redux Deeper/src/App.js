@@ -60,7 +60,9 @@ function App() {
 			return;
 		}
 		// sendCartData();
-		dispatch(sendCartData(cart));
+		if (cart.changed) {
+			dispatch(sendCartData(cart));
+		}
 	}, [cart, dispatch]);
 
 	return (

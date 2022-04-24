@@ -35,11 +35,15 @@ export const sendCartData = (cart) => {
 		);
 
 		try {
+			const cartData = {
+				items: cart.items,
+				totalQuantity: cart.totalQuantity,
+			};
 			const response = await fetch(
 				'https://redux-cart-6dcd9-default-rtdb.firebaseio.com/cart.json',
 				{
 					method: 'PUT',
-					body: JSON.stringify(cart),
+					body: JSON.stringify(cartData),
 				}
 			);
 			if (!response.ok) {
